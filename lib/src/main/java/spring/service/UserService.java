@@ -16,4 +16,8 @@ public class UserService {
 	public List<Map<String, Object>> getList() {
 		return userMapper.getList();
 	}
+
+	public void saveOne(Map<String, Object> params) {
+		return userMapper.saveOne();
+	}
 }
