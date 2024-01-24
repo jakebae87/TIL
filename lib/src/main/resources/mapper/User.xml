@@ -3,8 +3,18 @@
 <mapper namespace="spring.mapperInterface.UserMapper">
 
 	<!-- NOTICE LIST -->
-	<select id="getList" parameterType="Map" resultType="Map">
+	<select id="getList" resultType="Map">
 		SELECT *
 		FROM POST
 	</select>
+
+	<insert id="saveOne" parameterType="Map">
+		INSERT INTO POST
+		(id, user_nm, pwd)
+		VALUES (#{id}, #{user_nm}, #{pwd})
+	</insert>
+
+	<delete id="deleteOne" parameterType="String">
+		DELETE FROM POST WHERE id = #{id}
+	</delete>
 </mapper>

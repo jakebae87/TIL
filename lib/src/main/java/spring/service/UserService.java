@@ -17,7 +17,11 @@ public class UserService {
 		return userMapper.getList();
 	}
 
-	public void saveOne(Map<String, Object> params) {
-		return userMapper.saveOne();
+	public int saveOne(Map<String, Object> params) {
+		return userMapper.saveOne(params);
+	}
+
+	public int deleteOne(String id) {
+		return userMapper.deleteOne(id);
 	}
 }

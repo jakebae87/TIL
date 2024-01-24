@@ -8,4 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 	List<Map<String, Object>> getList();
+
+	int saveOne(Map<String, Object> params);
+	
+	int deleteOne(String id);
 }
