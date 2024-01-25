@@ -9,12 +9,21 @@
 	</select>
 
 	<insert id="saveOne" parameterType="Map">
-		INSERT INTO POST
+		INSERT
+		INTO POST
 		(id, user_nm, pwd)
 		VALUES (#{id}, #{user_nm}, #{pwd})
 	</insert>
 
 	<delete id="deleteOne" parameterType="String">
-		DELETE FROM POST WHERE id = #{id}
+		DELETE
+		FROM POST
+		WHERE id = #{id}
 	</delete>
+	
+	<update id="editOne" parameterType="Map">
+		UPDATE POST
+		SET user_nm = #{user_nm}, pwd = #{pwd}
+		WHERE id = #{id}
+	</update>
 </mapper>

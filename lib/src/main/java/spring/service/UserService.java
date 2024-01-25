@@ -24,4 +24,8 @@ public class UserService {
 	public int deleteOne(String id) {
 		return userMapper.deleteOne(id);
 	}
+
+	public int editOne(Map<String, Object> params) {
+		return userMapper.editOne(params);
+	}
 }

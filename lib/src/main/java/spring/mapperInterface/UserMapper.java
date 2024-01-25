@@ -10,6 +10,8 @@ public interface UserMapper {
 	List<Map<String, Object>> getList();
 
 	int saveOne(Map<String, Object> params);
-	
+
 	int deleteOne(String id);
+
+	int editOne(Map<String, Object> params);
 }
