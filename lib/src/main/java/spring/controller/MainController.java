@@ -54,7 +54,6 @@ public class MainController {
 	@PutMapping("/edit")
 	public ResponseEntity<String> editOne(@RequestBody Map<String, Object> params) {
 		userService.editOne(params);
-		System.out.println(params);
 		return ResponseEntity.ok("수정 성공");
 	}
 }
