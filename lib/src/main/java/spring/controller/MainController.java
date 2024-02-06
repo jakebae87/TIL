@@ -30,19 +30,13 @@ public class MainController {
 		List<Map<String, Object>> result = new ArrayList<>();
 
 		result = userService.getList();
-
+		
 		return result;
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<String> saveOne(@RequestBody Map<String, Object> params) {
-		userService.saveOne(params);
-		return ResponseEntity.ok("저장 성공");
-	}
-
 	@DeleteMapping("/delete")
-	public ResponseEntity<String> deleteOne(@RequestParam("id") String id) {
-		int result = userService.deleteOne(id);
+	public ResponseEntity<String> delete(@RequestParam("list") List<Integer> ids) { // list<map<x,y>>
+		int result = userService.delete(ids);
 
 		if (result > 0) {
 			return ResponseEntity.ok("삭제 성공");
@@ -50,10 +44,28 @@ public class MainController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
 		}
 	}
-	
-	@PutMapping("/edit")
-	public ResponseEntity<String> editOne(@RequestBody Map<String, Object> params) {
-		userService.editOne(params);
-		return ResponseEntity.ok("수정 성공");
+
+	@PostMapping("/insertAndUpdate")
+	public ResponseEntity<String> insertAndUpdate(@RequestBody List<Map<String, Object>> requestData) {
+		
+		userService.branchOut(requestData);
+		
+//		// requestData에서 필요한 데이터에 접근
+//		List<Map<String, Object>> updates = (List<Map<String, Object>>) requestData.get("updates");
+//		List<Map<String, Object>> inserts = (List<Map<String, Object>>) requestData.get("inserts");
+//
+//		// 여기서 updates와 inserts를 이용해 데이터를 처리
+//		System.out.println(updates);
+//		System.out.println(inserts);
+//
+//		if (updates.size() > 0) {
+//			userService.edit(updates);
+//		}
+//
+//		if (inserts.size() > 0) {
+//			userService.save(inserts);
+//		}
+
+		return ResponseEntity.ok("저장 및 수정 성공");
 	}
 }

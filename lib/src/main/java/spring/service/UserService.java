@@ -17,15 +17,30 @@ public class UserService {
 		return userMapper.getList();
 	}
 
-	public int saveOne(Map<String, Object> params) {
-		return userMapper.saveOne(params);
+	public int save(List<Map<String, Object>> inserts) {
+		return userMapper.save(inserts);
 	}
 
-	public int deleteOne(String id) {
-		return userMapper.deleteOne(id);
+	public int delete(List<Integer> ids) {
+		return userMapper.delete(ids);
 	}
 
-	public int editOne(Map<String, Object> params) {
-		return userMapper.editOne(params);
+	public int edit(List<Map<String, Object>> updates) {
+		return userMapper.edit(updates);
+	}
+
+	public void branchOut(List<Map<String, Object>> requestData) {
+
+		for (Map<String, Object> data : requestData) {
+		    Object isNewValue = data.get("isNew");
+		    Object editModeValue = data.get("editMode");
+
+		    if (isNewValue != null && (boolean) isNewValue) {
+		        System.out.println(data.get("user_nm") + " hello");
+		    } else if (isNewValue == null && editModeValue == null) {
+		        System.out.println("수정할게 없다.");
+		    }
+		}
+
 	}
 }

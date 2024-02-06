@@ -9,9 +9,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
 	List<Map<String, Object>> getList();
 
-	int saveOne(Map<String, Object> params);
+	int save(List<Map<String, Object>> inserts);
 
-	int deleteOne(String id);
+	int delete(List<Integer> ids);
 
-	int editOne(Map<String, Object> params);
+	int edit(List<Map<String, Object>> updates);
 }

@@ -6,24 +6,32 @@
 	<select id="getList" resultType="Map">
 		SELECT *
 		FROM POST
+		ORDER BY id;
 	</select>
 
-	<insert id="saveOne" parameterType="Map">
-		INSERT
-		INTO POST
-		(id, user_nm, pwd)
-		VALUES (#{id}, #{user_nm}, #{pwd})
+	<insert id="save" parameterType="java.util.List">
+		INSERT INTO post (user_nm, pwd)
+		VALUES
+		<foreach collection="list" item="item" separator=",">
+			(#{item.user_nm}, #{item.pwd})
+		</foreach>
 	</insert>
 
-	<delete id="deleteOne" parameterType="String">
+	<delete id="delete" parameterType="java.util.List">
 		DELETE
 		FROM POST
-		WHERE id = #{id}
+		WHERE id IN
+		<foreach item="item" index="index" collection="list" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
 	</delete>
-	
-	<update id="editOne" parameterType="Map">
-		UPDATE POST
-		SET user_nm = #{user_nm}, pwd = #{pwd}
-		WHERE id = #{id}
+
+	<update id="edit" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";">
+			UPDATE POST
+			SET user_nm = #{item.user_nm}, pwd = #{item.pwd}
+			WHERE id = #{item.id}
+		</foreach>
 	</update>
 </mapper>
