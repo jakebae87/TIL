@@ -26,11 +26,11 @@ public class MainController {
 	UserService userService;
 
 	@GetMapping("/list")
-	public List<Map<String, Object>> getList() {
-		List<Map<String, Object>> result = new ArrayList<>();
+	public List<Map<String, Object>> getList(@RequestParam("searchValue") String searchValue) {
 
-		result = userService.getList();
-		
+		List<Map<String, Object>> result = new ArrayList<>();
+		result = userService.getList(searchValue);
+
 		return result;
 	}
 
@@ -47,25 +47,14 @@ public class MainController {
 
 	@PostMapping("/insertAndUpdate")
 	public ResponseEntity<String> insertAndUpdate(@RequestBody List<Map<String, Object>> requestData) {
-		
-		userService.branchOut(requestData);
-		
-//		// requestData에서 필요한 데이터에 접근
-//		List<Map<String, Object>> updates = (List<Map<String, Object>>) requestData.get("updates");
-//		List<Map<String, Object>> inserts = (List<Map<String, Object>>) requestData.get("inserts");
-//
-//		// 여기서 updates와 inserts를 이용해 데이터를 처리
-//		System.out.println(updates);
-//		System.out.println(inserts);
-//
-//		if (updates.size() > 0) {
-//			userService.edit(updates);
-//		}
-//
-//		if (inserts.size() > 0) {
-//			userService.save(inserts);
-//		}
 
-		return ResponseEntity.ok("저장 및 수정 성공");
+		int result = userService.branchOut(requestData);
+
+		if (result > 0) {
+			return ResponseEntity.ok("저장 성공");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("저장 실패");
+		}
+
 	}
 }

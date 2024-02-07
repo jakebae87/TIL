@@ -3,9 +3,10 @@
 <mapper namespace="spring.mapperInterface.UserMapper">
 
 	<!-- NOTICE LIST -->
-	<select id="getList" resultType="Map">
+	<select id="getList" parameterType="String" resultType="Map">
 		SELECT *
 		FROM POST
+		WHERE user_nm LIKE CONCAT('%', #{searchValue}, '%')
 		ORDER BY id;
 	</select>
 

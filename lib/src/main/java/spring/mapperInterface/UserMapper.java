@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
-	List<Map<String, Object>> getList();
+	List<Map<String, Object>> getList(String searchValue);
 
 	int save(List<Map<String, Object>> inserts);
 
