@@ -22,8 +22,8 @@ public class UserService {
 		return userMapper.save(inserts);
 	}
 
-	public int delete(List<Integer> ids) {
-		return userMapper.delete(ids);
+	public int delete(List<Map<String, Object>> data) {
+		return userMapper.delete(data);
 	}
 
 	public int edit(List<Map<String, Object>> updates) {

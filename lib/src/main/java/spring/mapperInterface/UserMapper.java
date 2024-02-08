@@ -11,7 +11,7 @@ public interface UserMapper {
 
 	int save(List<Map<String, Object>> inserts);
 
-	int delete(List<Integer> ids);
+	int delete(List<Map<String, Object>> data);
 
 	int edit(List<Map<String, Object>> updates);
 }

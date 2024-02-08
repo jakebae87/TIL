@@ -35,8 +35,8 @@ public class MainController {
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<String> delete(@RequestParam("list") List<Integer> ids) { // list<map<x,y>>
-		int result = userService.delete(ids);
+	public ResponseEntity<String> delete(@RequestBody List<Map<String, Object>> requestData) { // list<map<x,y>>
+		int result = userService.delete(requestData);
 
 		if (result > 0) {
 			return ResponseEntity.ok("삭제 성공");
